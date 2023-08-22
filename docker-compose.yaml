@@ -13,7 +13,6 @@ services:
       - database
     networks:
       - absensi
-    # network_mode: "host"
 
   database:
     container_name: database
@@ -31,7 +30,6 @@ services:
       - pgdata:/var/lib/postgresql/data
     networks:
       - absensi
-    # network_mode: "host"
 
 networks:
   absensi:
