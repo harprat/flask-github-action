@@ -1,4 +1,4 @@
-name: CD
+name: CD (Continuous Delivery)
 
 on:
   push:
@@ -6,7 +6,8 @@ on:
       - "main"
 
 jobs:
-  build:
+  build-push:
+    name: Build and Push To DockerHub
     runs-on: ubuntu-latest
     steps:
       
