@@ -1,0 +1,43 @@
+name: CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build-push:
+    name: Build and Push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Tag repository
+        id: tag
+        run: echo "::set-output name=date::$(date +'%s')"
+
+      - name: Build Images
+        env:
+            ACCOUNT_NAME: ${{ secrets.ACCOUNT_NAME }}
+            FLASK_REPOSITORY: ${{ secrets.FLASK_REPOSITORY }}
+            DB_REPOSITORY: ${{ secrets.DB_REPOSITORY }}
+            TAG: ${{ steps.date.outputs.tag }}
+        run: |
+          docker build -t $ACCOUNT_NAME/$FLASK_REPOSITORY:$TAG ./app
+          docker build -t $ACCOUNT_NAME/$DB_REPOSITORY:$TAG ./postgres
+
+      - name: Docker Login
+        env:
+            DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
+            DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+      - name: Docker Push
+        run:
+            docker push $ACCOUNT_NAME/$FLASK_REPOSITORY:$TAG
+            docker push $ACCOUNT_NAME/$DB_REPOSITORY:$TAG
+
+          
