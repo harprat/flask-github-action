@@ -32,8 +32,8 @@ jobs:
         env: 
             TAG: ${{ steps.date.outputs.tag }}
         with:
-          context: .
-          file: ./app/Dockerfile
+          context: ./app
+          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/flaskapp:$TAG
 
@@ -42,7 +42,7 @@ jobs:
         env: 
             TAG: ${{ steps.date.outputs.tag }}
         with:
-            context: .
-            file: ./postgres/Dockerfile
+            context: ./postgres
+            file: ./Dockerfile
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/postgres:$TAG
