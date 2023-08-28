@@ -29,6 +29,8 @@ jobs:
         env:
             TAG: ${{ steps.date.outputs.tag }}
         run: |
+            pwd
+            ls
             docker build -t $DOCKERHUB_USERNAME/flaskapp:1.0 ./app
             docker build -t $DOCKERHUB_USERNAME/postgres:1.0 ./postgres
 
