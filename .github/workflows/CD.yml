@@ -24,23 +24,16 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build Images
-        env:
-            username: ${{ secrets.DOCKERHUB_USERNAME }}
-            password: ${{ secrets.DOCKERHUB_TOKEN }}
-            TAG: ${{ steps.date.outputs.tag }}
-        run: |
-            docker build -t $username/flaskapp:$TAG ./app
-            docker build -t $username/postgres:$TAG ./postgres
-
-      - name: Docker Push
-        env:
-            username: ${{ secrets.DOCKERHUB_USERNAME }}
-            password: ${{ secrets.DOCKERHUB_TOKEN }}
-            TAG: ${{ steps.date.outputs.tag }}
-        run:
-            docker push $username/flaskapp:$TAG
-            docker push $username/postgres:$TAG
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./app/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/flaskapp:latest
 
           
