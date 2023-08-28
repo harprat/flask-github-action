@@ -29,12 +29,12 @@ jobs:
         env:
             TAG: ${{ steps.date.outputs.tag }}
         run: |
-            docker build -t $DOCKERHUB_USERNAME/flaskapp:$TAG ./app
-            docker build -t $DOCKERHUB_USERNAME/postgres:$TAG ./postgres
+            docker build -t $DOCKERHUB_USERNAME/flaskapp:1.0 ./app
+            docker build -t $DOCKERHUB_USERNAME/postgres:1.0 ./postgres
 
       - name: Docker Push
         run:
-            docker push $DOCKERHUB_USERNAME/flaskapp:$TAG
-            docker push $DOCKERHUB_USERNAME/postgres:$TAG
+            docker push $DOCKERHUB_USERNAME/flaskapp:1.0
+            docker push $DOCKERHUB_USERNAME/postgres:1.0
 
           
