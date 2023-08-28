@@ -13,11 +13,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
-
-      - name: Tag repository
-        id: date
-        run: echo "::set-output name=date::$(date +'%s')"
 
       - name: Login to Docker Hub
         uses: docker/login-action@v2
