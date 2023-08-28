@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  build-:
+  build-testing:
     name: Build and Testing
     runs-on: ubuntu-latest
 
@@ -24,4 +24,4 @@ jobs:
 
       - name: Testing
         run: 
-          python3 testing/test.py
+          python3 testing/test.py          
