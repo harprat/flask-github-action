@@ -30,24 +30,18 @@ jobs:
       
       - name: Build and push flaskapp
         uses: docker/build-push-action@v4
-        env:
-            USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-            TAG: ${{ steps.date.outputs.date }}
         with:
             context: ./app
             file: ./app/Dockerfile
             push: true
-            tags: $USERNAME/flaskapp:$TAG
+            tags: ${{ secrets.DOCKERHUB_USERNAME }}/flaskapp:${{ steps.date.outputs.date }}
           
       - name: Build and push postgres
         uses: docker/build-push-action@v4
-        env:
-            USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-            TAG: ${{ steps.date.outputs.date }}
         with:
             context: ./postgres
             file: ./postgres/Dockerfile
             push: true
-            tags: $USERNAME/postgres:$TAG
+            tags: ${{ secrets.DOCKERHUB_USERNAME }}/postgres:${{ steps.date.outputs.date }}
 
           
