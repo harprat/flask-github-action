@@ -27,16 +27,20 @@ jobs:
 
       - name: Build Images
         env:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_TOKEN }}
             TAG: ${{ steps.date.outputs.tag }}
         run: |
-            pwd
-            ls
-            docker build -t $DOCKERHUB_USERNAME/flaskapp:1.0 ./app
-            docker build -t $DOCKERHUB_USERNAME/postgres:1.0 ./postgres
+            docker build -t $username/flaskapp:$TAG ./app
+            docker build -t $username/postgres:$TAG ./postgres
 
       - name: Docker Push
+        env:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_TOKEN }}
+            TAG: ${{ steps.date.outputs.tag }}
         run:
-            docker push $DOCKERHUB_USERNAME/flaskapp:1.0
-            docker push $DOCKERHUB_USERNAME/postgres:1.0
+            docker push $username/flaskapp:$TAG
+            docker push $username/postgres:$TAG
 
           
