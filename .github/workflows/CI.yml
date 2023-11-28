@@ -24,5 +24,6 @@ jobs:
           sudo docker compose up -d
 
       - name: Testing
-        run: 
-          python3 testing/test.py          
+        run:
+          sleep 20
+          python3 testing/test.py
