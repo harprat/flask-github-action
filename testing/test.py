@@ -52,3 +52,7 @@ class TestFormElements():
         # find label program element and its value
         program_label = self.driver.find_element(By.XPATH, "//label[@for='jurusan']")
         assert program_label.text == "Jurusan:", "Program Check Failed"
+
+# run pytest when this file is not imported
+if __name__ == "__main__"
+    pytest.main()
