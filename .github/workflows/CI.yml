@@ -29,5 +29,5 @@ jobs:
 
       - name: Testing
         run:
-          sleep 20
-          python3 testing/test.py
+          sleep 10
+          pytest testing/test.py
