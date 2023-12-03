@@ -19,7 +19,7 @@ options = [
 ]
 
 for option in options:
-    chrome_options.add_argument(options)
+    chrome_options.add_argument(option)
 
 class TestFormElements():
     @classmethod
