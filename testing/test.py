@@ -54,5 +54,5 @@ class TestFormElements():
         assert program_label.text == "Jurusan:", "Program Check Failed"
 
 # run pytest when this file is not imported
-if __name__ == "__main__"
+if __name__ == "__main__":
     pytest.main()
