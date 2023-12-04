@@ -1,8 +1,7 @@
 name: CD (Continuous Delivery)
 
 on:
-  push:
-    branches: [ "main" ]
+  workflow_dispatch
 
 jobs:
 
