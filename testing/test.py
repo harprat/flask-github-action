@@ -43,12 +43,12 @@ class TestFormElements():
         nim_label = self.driver.find_element(By.XPATH, "//label[@for='nim']")
         assert nim_label.text == "Nomor Induk Mahasiswa:", "NIM Check Failed"
 
-    def course_label(self):
+    def test_course_label(self):
         # find label course element and its value
         course_label = self.driver.find_element(By.XPATH, "//label[@for='mata_kuliah']")
         assert course_label.text == "Mata Kuliah:", "Course Check Failed"
 
-    def program_label(self):
+    def test_program_label(self):
         # find label program element and its value
         program_label = self.driver.find_element(By.XPATH, "//label[@for='jurusan']")
         assert program_label.text == "Jurusan:", "Program Check Failed"
